@@ -1,0 +1,31 @@
+<% layout('layouts/boilerplate')%>
+
+<div>
+    <a class="btn btn-primary" href="/datas/show">Back to all datas</a>
+</div>
+<%if(data){%>
+    <div class="container mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>time</th>
+            <th>button</th>
+            <th>correct</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%for(var i=0; i < data.length; i++){%>
+          <tr>
+            <td><%= data[i].X%></td>
+            <td><%= data[i].Y%></td>
+            <td><%= data[i].time%></td>
+            <td><%= data[i].button%></td>
+            <td><%= data[i].correct%></td>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
+    </div>
+<%}%>

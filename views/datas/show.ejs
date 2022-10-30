@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate')%>
+
+<h1>Data</h1>
+<div>
+    <a class="btn btn-primary" href="/datas/new">Add Data</a>
+</div>
+<% for (let data of datas){%>
+  <div class="card text-center">
+    <div class="card-body">
+      <h5 class="card-title"><a class="card-link" href="/public/uploads/<%= data.filename %> "><%= data.filename %></a></h5>
+      <p class="card-text"><small class="text-muted">Submited by <%= data.author.username %></small></p>
+    </div>
+  </div>
+<% }%>
+

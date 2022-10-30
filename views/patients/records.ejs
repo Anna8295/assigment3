@@ -1,0 +1,64 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container">
+    <h3>Records and Data</h3>
+    <div class="row">
+      <div class="col">
+        <% for (let record of records){%>
+            <div class="card" mb-3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Therapy: <%= record.therapy%></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Date: <%= record.date %></h6>
+                            <p class="card-text"><%= record.medicine%></p>
+                            <p class="card-text"><small class="text-muted">Submitted by <%= record.author.username%></small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <% for (let dat of data){%>
+            <h2>Data</h2>
+            <div class="card" mb-3>
+                <div class="card-body">
+                    <p class="card-text"><%= dat.filename%></p>
+                    <p class="card-text"><small class="text-muted">Submitted by <%= dat.author.username%></small></p>
+                </div>
+            </div>
+        <% } %> 
+      </div>
+      <div class="col-4">
+        <% if( logUser === 'researcher') {%> 
+            <h3>Leave a Note</h3>
+            <form action="/notes/<%= user.id %>" method="POST" class="mb-3 validated-form" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="body">Note Text</label>
+                    <textarea class="form-control" name="note[body]" id="body" cols="30" rows="3" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <button class="btn btn-success">Submit</button>
+            </form>
+        <% } %> 
+        <% for (let note of notes){%>
+            <h2>Notes</h2>
+            <div class="card" mb-3>
+                <div class="card-body">
+                    <p class="card-text"><%= note.body%></p>
+                    <p class="card-text"><small class="text-muted">Submitted by <%= note.author.username%></small></p>
+                </div>
+            </div>
+        <% } %> 
+
+      </div>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="/profile">Back to profile</a>
+    </div>
+</div>
